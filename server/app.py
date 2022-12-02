@@ -17,7 +17,7 @@ engine = create_engine(url)
 connection = engine.connect()
 
 @app.route("/actor",methods=['GET', 'POST'])
-def populateCountries():
+def getActorNames():
     covidQuery = "select stage from actor"
     covidDF = pd.read_sql_query(text(covidQuery), engine)
     connection.close()

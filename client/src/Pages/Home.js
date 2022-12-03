@@ -11,7 +11,6 @@ const styles = {
         height: '2000px',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
-        backgroundBlendMode: 'soft-light',
     }
 };
 

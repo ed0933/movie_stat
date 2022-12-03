@@ -67,7 +67,7 @@ def rating():
     return "Rating inserted"
 
 @app.route("/actorInMovie",methods=['GET', 'POST'])
-deg rating():
+def rating():
     actor = request.json.get('actor')
     movieQuery = "select m.title, m.popularity from movies m join credits c on m.id = c.id where c.crew LIKE '%:actor%' order by m.popularity DESC"
     engine.execute(text(movieQuery))

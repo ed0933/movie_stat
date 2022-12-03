@@ -22,12 +22,26 @@ export default class apiService {
 
 
     static GetActorInfo(stage) {
-        return fetch('http://localhost:5000/GetActorInfo', {
+        return fetch('http://localhost:5000/getActorInfo', {
             method:'POST',
             mode: 'cors',
             headers : {'Content-Type':'application/json'},
             body:  JSON.stringify({
                 "stage": stage
+            })
+        })
+        .then(response => response.json())
+        .catch(error => console.log(error));
+    }
+
+    static InsertUser(username, password) {
+        return fetch('http://localhost:5000/insertUser', {
+            method:'POST',
+            mode: 'cors',
+            headers : {'Content-Type':'application/json'},
+            body:  JSON.stringify({
+                "username": username,
+                "password": password
             })
         })
         .then(response => response.json())

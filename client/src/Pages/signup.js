@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 
 import "./signUp.css";
 import { PanoramaFishEye } from '@mui/icons-material';
+import apiService from '../Components/apiService.js'
+
 
 function SignUp() {
   // React States
@@ -42,6 +44,8 @@ function SignUp() {
         setErrorMessages({ name: "pass", message: errors.pass });
     } else {
         setIsSubmitted(true); 
+        console.log(uname.value + " " + pass.value);
+        apiService.InsertUser(uname.value, pass.value);
     }
   };
 

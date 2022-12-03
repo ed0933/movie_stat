@@ -3,8 +3,11 @@ from flask import Flask, request
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine, text
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 
 config = cfgReader.read_config()
 PASSWORD = config['Cloud']['PASSWORD']

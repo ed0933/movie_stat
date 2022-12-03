@@ -44,7 +44,6 @@ function SignUp() {
         setErrorMessages({ name: "pass", message: errors.pass });
     } else {
         setIsSubmitted(true); 
-        console.log(uname.value + " " + pass.value);
         apiService.InsertUser(uname.value, pass.value);
     }
   };
@@ -78,6 +77,7 @@ function SignUp() {
 
   return (
     <div className="app">
+      <Nav />
       <div className="login-form">
         <div className="title">Sign Up</div>
         {isSubmitted ? <div>User has successfully signed up!</div> : renderForm}

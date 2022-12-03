@@ -50,3 +50,15 @@ def insertUser():
     connection.close()
     engine.dispose()
     return "Inserted"
+
+@app.route("/ratings",methods=['GET', 'POST'])
+def rating():
+    userId = request.json.get('username')
+    movieId = request.json.get('movieId')
+    rating = request.json.get('rating')
+    timestamp = request.json.get('timestamp')
+    movieQuery = "insert into ratings Values('{username}','{movieId}', '{rating}', '{timestamp}')"
+    engine.execute(text(movieQuery))
+    connection.close()
+    engine.dispose()
+    return "Rating inserted"

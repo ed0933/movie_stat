@@ -2,7 +2,7 @@ import * as React from 'react';
 import {AppBar, Box, Container, Button, Toolbar, Typography} from '@mui/material';
 import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 
-const pages = ['actorLookup', 'movieLookup'];
+const pages = ['SignIn', 'SignUp'];
 
 const Nav = () => {
 

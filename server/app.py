@@ -70,6 +70,7 @@ def rating():
 def rating():
     actor = request.json.get('actor')
     movieQuery = "select m.title, m.popularity from movies m join credits c on m.id = c.id where c.crew LIKE '%:actor%' order by m.popularity DESC"
+    movieDF = pd.read_sql_query(text(movieQuery), engine)
     engine.execute(text(movieQuery))
     connection.close()
     engine.dispose()

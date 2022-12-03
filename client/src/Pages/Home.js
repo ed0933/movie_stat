@@ -21,7 +21,7 @@ function Home() {
     <div className='App'>
       <Nav />
       <Paper style={styles.paperContainer}>
-        <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='center' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #ffffff", opacity:"0.95"}}>
+        <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='center' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #6e6666", opacity:"0.90"}}>
         <h1>MovieStat</h1>
         <br/>
          A Movie Statistic Site for Everyone

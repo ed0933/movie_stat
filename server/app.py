@@ -18,8 +18,8 @@ connection = engine.connect()
 
 @app.route("/actor",methods=['GET', 'POST'])
 def getActorNames():
-    covidQuery = "select stage from actor"
-    covidDF = pd.read_sql_query(text(covidQuery), engine)
+    movieQuery = "select stage from actor"
+    movieDF = pd.read_sql_query(text(movieQuery), engine)
     connection.close()
     engine.dispose()
-    return covidDF.to_json()
+    return movieDF.to_json()

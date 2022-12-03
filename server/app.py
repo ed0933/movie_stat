@@ -16,10 +16,19 @@ app.config["SQLALCHEMY_DATABASE_URI"] = url
 engine = create_engine(url)
 connection = engine.connect()
 
-@app.route("/actor",methods=['GET', 'POST'])
-def getActorNames():
+@app.route("/populateActors",methods=['GET', 'POST'])
+def populateActors():
     movieQuery = "select stage from actor"
     movieDF = pd.read_sql_query(text(movieQuery), engine)
+    connection.close()
+    engine.dispose()
+    return movieDF.to_json()
+
+@app.route("/getActorInfo",methods=['GET', 'POST'])
+def populateMovieNames():
+    stage = request.json.get('stage')
+    movieQuery = "select * from actor where stage = :stage"
+    movieDF = pd.read_sql_query(text(movieQuery), engine, params={'stage':stage})
     connection.close()
     engine.dispose()
     return movieDF.to_json()

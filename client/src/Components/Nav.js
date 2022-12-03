@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {AppBar, Box, Container, Button, Toolbar, Typography} from '@mui/material';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
+import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 
 const pages = ['actorLookup', 'movieLookup'];
 
@@ -8,10 +8,10 @@ const Nav = () => {
 
 
   return (
-    <AppBar position="fixed"  style={{ background: '#5471a8', opacity:0.9}}>
+    <AppBar position="fixed"  style={{ background: '#bf3232', opacity:0.9}}>
       <Container maxWidth="x0">
         <Toolbar>
-          <AcUnitIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <MovieFilterIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
 
           <Typography
             variant="h6"

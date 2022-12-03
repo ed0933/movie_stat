@@ -40,3 +40,17 @@ def getActorInfo():
     connection.close()
     engine.dispose()
     return movieDF.to_json()
+
+@app.route("/insertUser",methods=['GET', 'POST'])
+def insertUser():
+    username = request.json.get('username')
+    firstName = request.json.get('firstName')
+    lastName = request.json.get('lastName')
+    password = request.json.get('password')
+    movieQuery = f"insert into users Values('{username}', '{firstName}', '{lastName}', '{password}')"
+    engine.execute(text(movieQuery))
+
+    #movieDF = pd.read_sql_query(text(movieQuery), engine, params={'username':username, "firstName":firstName, "lastName":lastName, "password":password})
+    connection.close()
+    engine.dispose()
+    return "Inserted"

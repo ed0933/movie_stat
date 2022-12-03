@@ -2,7 +2,7 @@ import * as React from 'react';
 import {AppBar, Box, Container, Button, Toolbar, Typography} from '@mui/material';
 import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 
-const pages = ['SignIn', 'SignUp'];
+const pages = [{title: 'Sign-Up', keys:'SignUp'}, {title: 'Sign-In', keys:'SignIn'}];
 
 const Nav = () => {
 
@@ -36,11 +36,11 @@ const Nav = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                href= {"/" + page}
+                key={page.keys}
+                href= {"/" + page.keys}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>

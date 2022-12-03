@@ -1,5 +1,5 @@
 import cfgReader
-from flask import Flask
+from flask import Flask, request
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine, text
@@ -24,8 +24,16 @@ def populateActors():
     engine.dispose()
     return movieDF.to_json()
 
+@app.route("/populateMovies",methods=['GET', 'POST'])
+def populateMovies():
+    movieQuery = "select title from movies"
+    movieDF = pd.read_sql_query(text(movieQuery), engine)
+    connection.close()
+    engine.dispose()
+    return movieDF.to_json()
+
 @app.route("/getActorInfo",methods=['GET', 'POST'])
-def populateMovieNames():
+def getActorInfo():
     stage = request.json.get('stage')
     movieQuery = "select * from actor where stage = :stage"
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'stage':stage})

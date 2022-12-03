@@ -65,3 +65,12 @@ def rating():
     connection.close()
     engine.dispose()
     return "Rating inserted"
+
+@app.route("/actorInMovie",methods=['GET', 'POST'])
+deg rating():
+    actor = request.json.get('actor')
+    movieQuery = "select m.title, m.popularity from movies m join credits c on m.id = c.id where c.crew LIKE '%:actor%' order by m.popularity DESC"
+    engine.execute(text(movieQuery))
+    connection.close()
+    engine.dispose()
+    return "Found movies with actor selected"

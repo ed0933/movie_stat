@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react'
 import Nav from '../Components/Nav.js';
 import {Grid} from '@mui/material';
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom"; //npm install -S react-router-dom
+
+import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 import "./signUp.css";
-import { PanoramaFishEye } from '@mui/icons-material';
 import apiService from '../Components/apiService.js'
 
 
@@ -71,7 +75,11 @@ function SignUp() {
       <Nav />
       <div className="login-form">
         <div className="title">Sign Up</div>
-        {isSubmitted ? <div>User has successfully signed up!</div> : renderForm}
+        {isSubmitted ? 
+        <div>User has successfully signed up!
+        <p>Sign in:</p>
+            <Link to="/signin">SignIn</Link>
+        </div> : renderForm}
       </div>
     </div>
   );

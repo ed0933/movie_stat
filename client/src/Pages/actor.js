@@ -74,8 +74,9 @@ const renderErrorMessage = (name) =>
         <option> c </option>  
         <option> d </option>  
         </select> 
-        </form>  
+         
         {isSubmitted ? <div>Actor Looked Up!</div> : renderForm}
+        </form> 
         </Grid>
       </Paper>
       </div>

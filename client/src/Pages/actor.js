@@ -68,7 +68,7 @@ const renderErrorMessage = (name) =>
         <form>  
         <b> Choose the actor: </b>  
         <select id = "Actorname" onchange = "ListActors()" > 
-        <option> ---Choose tutorial--- </option>  
+        <option> ---Choose Actor--- </option>  
         <option> a </option>  
         <option> b </option>  
         <option> c </option>  

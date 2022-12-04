@@ -33,9 +33,9 @@ function SignUp() {
 
 
     // Compare user info
-    if (uname.value == "") {
+    if (uname.value === "") {
         setErrorMessages({ name: "uname", message: errors.uname });
-    } else if (pass.value == "") {
+    } else if (pass.value === "") {
         setErrorMessages({ name: "pass", message: errors.pass });
     } else {
         setIsSubmitted(true); 

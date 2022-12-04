@@ -2,9 +2,13 @@ import { useState, useEffect } from 'react'
 import Nav from '../Components/Nav.js';
 import {Grid} from '@mui/material';
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom"; //npm install -S react-router-dom
+
+import React from 'react';
+import {Link} from 'react-router-dom';
+
 
 import "./signUp.css";
-import { PanoramaFishEye } from '@mui/icons-material';
 import apiService from '../Components/apiService.js'
 
 
@@ -12,16 +16,7 @@ function SignUp() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  /*const database = [
-    {
-      username: "u1",
-      password: "p1"
-    },
-    {
-      username: "u2",
-      password: "p2"
-    }
-  ];*/
+
   const errors = {
     uname: "Please Enter Username",
     pass: "Please Enter Password"
@@ -38,9 +33,9 @@ function SignUp() {
 
 
     // Compare user info
-    if (uname.value == "") {
+    if (uname.value === "") {
         setErrorMessages({ name: "uname", message: errors.uname });
-    } else if (pass.value == "") {
+    } else if (pass.value === "") {
         setErrorMessages({ name: "pass", message: errors.pass });
     } else {
         setIsSubmitted(true); 
@@ -80,7 +75,11 @@ function SignUp() {
       <Nav />
       <div className="login-form">
         <div className="title">Sign Up</div>
-        {isSubmitted ? <div>User has successfully signed up!</div> : renderForm}
+        {isSubmitted ? 
+        <div>User has successfully signed up!
+        <p>Sign in:</p>
+            <Link to="/signin">SignIn</Link>
+        </div> : renderForm}
       </div>
     </div>
   );

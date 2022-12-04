@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import apiService from '../Components/apiService.js'
 
 import "./signIn.css";
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 function SignIn() {
   // React States
@@ -16,20 +18,9 @@ function SignIn() {
 
 
   // User Login info, this needs to be editable and have 
-  const database = [
-    {
-      username: "u1",
-      password: "p1"
-    },
-    {
-      username: "u2",
-      password: "p2"
-    }
-  ];
 
   const errors = {
-    uname: "INVALID USERNAME",
-    pass: "INVALID PASSWORD"
+    pass: "INVALID USERNAME OR PASSWORD"
   };
 
   let navigate = useNavigate(); 
@@ -37,6 +28,12 @@ function SignIn() {
     let path = `/`; 
     navigate(path);
   }
+  
+  useEffect(() => {
+    var { uname, pass } = document.forms[0];
+    validationCheck(uname,pass);
+  }, [userResult, passResult]);
+
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
@@ -46,22 +43,29 @@ function SignIn() {
     .catch(error => console.log('error', error));
     apiService.CheckLogin(uname.value, pass.value).then((response) => setPassResult(response['password'][0]))
     .catch(error => console.log('error', error));
-    console.log(userResult);
-    console.log(passResult);
 
     // Compare user info
-    if (uname.value == userResult) {
+    
+  };
+
+  function validationCheck(uname, pass) {
+    if (uname.value === userResult) {
       if (pass.value !== passResult) {
         // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
+        if (pass.value !== '') {
+          setErrorMessages({ name: "pass", message: errors.pass });
+        }
       } else {
         setIsSubmitted(true);
-        routeChange()   }
+        routeChange()   
+      }
     } else {
       // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
+      if (uname.value !== '') {
+        setErrorMessages({ name: "pass", message: errors.pass });
+      }
     }
-  };
+  }
 
   // Generate JSX code for error message
   const renderErrorMessage = (name) =>
@@ -86,6 +90,8 @@ function SignIn() {
         <div className="button-container">
           <input type="submit" />
         </div>
+        <p>Sign up:</p>
+            <Link to="/signup">SignUp</Link>
       </form>
     </div>
   );
@@ -94,7 +100,9 @@ function SignIn() {
     <div className="app">
       <div className="login-form">
         <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in!</div> : renderForm}
+        {isSubmitted ? 
+        <div>User is successfully logged in!
+        </div> : renderForm}
       </div>
     </div>
   );

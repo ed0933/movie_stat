@@ -48,7 +48,7 @@ def getActorInfo():
 def insertUser():
     username = request.json.get('username')
     password = request.json.get('password')
-    movieQuery = f"if not exists(select username from users where username = '{username}') begin insert into users Values('{username}', '{password}') end"
+    movieQuery = f"insert into users Values('{username}', '{password}')"
     engine.execute(text(movieQuery))
     connection.close()
     engine.dispose()

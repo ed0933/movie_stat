@@ -49,7 +49,7 @@ function SignIn() {
   };
 
   function validationCheck(uname, pass) {
-    if (uname.value == userResult) {
+    if (uname.value === userResult) {
       if (pass.value !== passResult) {
         // Invalid password
         if (pass.value !== '') {

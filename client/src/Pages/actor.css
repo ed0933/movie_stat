@@ -1,5 +1,5 @@
 .actor {
-  text-align: center;
+  text-align: left;
 }
 
 .actor-logo {
@@ -22,7 +22,7 @@ body {
 
 .actor-header {
   background-color: #000000;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +32,7 @@ body {
 }
 
 .container {
+  position: relative;
   background-color: rgb(255, 255, 255);
   text-decoration: none;
   font-family: 'Ubuntu', sans-serif;

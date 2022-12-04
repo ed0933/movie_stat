@@ -54,8 +54,8 @@ const renderErrorMessage = (name) =>
       <div className="actor">
       <div className="actor-form">
         <Paper style={styles.paperContainer}>
-        <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='center' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #6e6666", opacity:"0.90"}}>
-        <div className="title">Movie Lookup</div>
+        <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='left' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #6e6666", opacity:"0.90"}}>
+        <h1>Search a movie!</h1>
         {isSubmitted ? <div>Movie Looked Up!</div> : renderForm}
         </Grid>
       </Paper>

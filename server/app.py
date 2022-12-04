@@ -85,3 +85,12 @@ def checkLogin():
     connection.close()
     engine.dispose()
     return movieDF.to_json()
+
+@app.route("/movie_lookup",methods=['GET', 'POST'])
+def movie_lookup():
+    movie = request.json.get('movie')
+    movieQuery = "select title, genre, release_date, original_language from movies where title = :movie"
+    movieDF = pd.read_sql_query(text(movieQuery), engine, params={'movie':movie})
+    connection.close()
+    engine.dispose()
+    return movieDF.to_json()

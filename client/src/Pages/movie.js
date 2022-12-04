@@ -1,67 +1,42 @@
-import 'devextreme/dist/css/dx.common.css';
-import { useState } from 'react'
-import 'devextreme/dist/css/dx.light.css'; //npx -p devextreme-cli devextreme add devextreme-react
-import './movie.css';
+import React from "react";
+import { Dropdown, Option } from "./DropdownMovie";
 
-import {Paper, Grid} from '@mui/material'; //npm install @mui/material @emotion/react @emotion/styled
-import Image from '../Assets/img2.jpg';
+class MovieLookup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
 
-const styles = {
-  paperContainer: {
-      backgroundImage: `url(${Image})`,
-      height: '2000px',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
+    this.handleSelect = this.handleSelect.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-};
 
-function MovieLookup() {
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const errors = {
-    uname: "Please Enter Movie",
-  };
-  const handleSubmit = (event) => {
-    //Prevent page reload
+  handleSelect(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
     event.preventDefault();
-
-    var { uname } = document.forms[0];
-    if (uname.value === "") {
-      setErrorMessages({ name: "uname", message: errors.uname });
-  } else {
-      setIsSubmitted(true); 
+    console.log(this.state.value);
   }
-};
-const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
-  const renderForm = (
-    <div className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label>Enter movie name</label>
-          <input type="text" name="uname" required />
-          {renderErrorMessage("uname")}
-        </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
-      </form>
-    </div>
-  );
-  return (
-      <div className="actor">
-      <div className="actor-form">
-        <Paper style={styles.paperContainer}>
-        <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='left' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #6e6666", opacity:"0.90"}}>
-        <h1>Search a movie!</h1>
-        {isSubmitted ? <div>Movie Looked Up!</div> : renderForm}
-        </Grid>
-      </Paper>
+
+  render() {
+    return (
+      <div>
+        <h1>Which movie do you want to look up?</h1>
+        <Dropdown
+          formLabel="Choose a movie"
+          buttonText="Submit form"
+          onChange={this.handleSelect}          action=""
+        >
+          <Option value="Click to see options" />
+          <Option value="Movie 1" />
+          <Option value="Movie 2" />
+          <Option value="Movie 3" />
+        </Dropdown>
+        <p>You selected {this.state.value} </p>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default MovieLookup;

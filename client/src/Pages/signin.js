@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import apiService from '../Components/apiService.js'
 
 import "./signIn.css";
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 function SignIn() {
   // React States
@@ -88,6 +90,8 @@ function SignIn() {
         <div className="button-container">
           <input type="submit" />
         </div>
+        <p>Sign up:</p>
+            <Link to="/signup">SignUp</Link>
       </form>
     </div>
   );
@@ -96,7 +100,9 @@ function SignIn() {
     <div className="app">
       <div className="login-form">
         <div className="title">Sign In</div>
-        {isSubmitted ? <div>User is successfully logged in!</div> : renderForm}
+        {isSubmitted ? 
+        <div>User is successfully logged in!
+        </div> : renderForm}
       </div>
     </div>
   );

@@ -1,0 +1,58 @@
+.actor {
+  text-align: center;
+}
+
+.actor-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .actor-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.actor-header {
+  background-color: #000000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.container {
+  background-color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-family: 'Ubuntu', sans-serif;
+  color: #000;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(2px + 2vmin);
+  color: rgb(61, 59, 59);
+}
+
+.actor-link {
+  color: #000000;
+}
+
+@keyframes actor-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

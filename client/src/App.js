@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom"; //npm 
 import Home from './Pages/Home.js';
 import SignIn from './Pages/signin.js';
 import SignUp from './Pages/signup.js';
+import Actor from './Pages/actor.js';
+import Movie from './Pages/movie.js';
 
 
 
@@ -17,6 +19,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/actor' element={<Actor />} />
+          <Route path='/movie' element={<Movie />} />
         </Routes>
       </Router>
       </div>

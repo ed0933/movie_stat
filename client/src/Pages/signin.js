@@ -16,20 +16,9 @@ function SignIn() {
 
 
   // User Login info, this needs to be editable and have 
-  const database = [
-    {
-      username: "u1",
-      password: "p1"
-    },
-    {
-      username: "u2",
-      password: "p2"
-    }
-  ];
 
   const errors = {
-    uname: "INVALID USERNAME",
-    pass: "INVALID PASSWORD"
+    pass: "INVALID USERNAME OR PASSWORD"
   };
 
   let navigate = useNavigate(); 
@@ -37,6 +26,14 @@ function SignIn() {
     let path = `/`; 
     navigate(path);
   }
+  useEffect(() => {
+
+  }, [userResult]);
+  
+  useEffect(() => {
+
+  }, [passResult]);
+
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
@@ -46,9 +43,10 @@ function SignIn() {
     .catch(error => console.log('error', error));
     apiService.CheckLogin(uname.value, pass.value).then((response) => setPassResult(response['password'][0]))
     .catch(error => console.log('error', error));
+
+
     console.log(userResult);
     console.log(passResult);
-
     // Compare user info
     if (uname.value == userResult) {
       if (pass.value !== passResult) {
@@ -59,7 +57,7 @@ function SignIn() {
         routeChange()   }
     } else {
       // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
+      setErrorMessages({ name: "pass", message: errors.pass });
     }
   };
 

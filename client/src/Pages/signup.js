@@ -12,16 +12,7 @@ function SignUp() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  /*const database = [
-    {
-      username: "u1",
-      password: "p1"
-    },
-    {
-      username: "u2",
-      password: "p2"
-    }
-  ];*/
+
   const errors = {
     uname: "Please Enter Username",
     pass: "Please Enter Password"

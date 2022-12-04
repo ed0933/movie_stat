@@ -54,24 +54,10 @@ def insertUser():
     engine.dispose()
     return "Inserted"
 
-@app.route("/ratings",methods=['GET', 'POST'])
-def ratings():
-    userId = request.json.get('username')
-    movieId = request.json.get('movieId')
-    rating = request.json.get('rating')
-    timestamp = request.json.get('timestamp')
-    movieQuery = f"insert into ratings Values('{username}','{movieId}', '{rating}', '{timestamp}')"
-    movieDF = pd.read_sql_query(text(movieQuery), engine, params={'username':username, 'movieId':movieId, 'rating':rating, 'timestamp':timestamp})
-    engine.execute(text(movieQuery))
-    connection.close()
-    engine.dispose()
-    return "Rating inserted"
-
-@app.route("/actorInMovie",methods=['GET', 'POST'])
-def actorInMovie():
-    actor = request.json.get('actor')
-    movieQuery = "select m.title, m.popularity from movies m join credits c on m.id = c.id where c.crew LIKE '%:actor%' order by m.popularity DESC"
-    movieDF = pd.read_sql_query(text(movieQuery), engine, param={'actor':actor})
+@app.route("/actor_lookup_dropdown",methods=['GET', 'POST'])
+def actor_lookup_dropdown():
+    movieQuery = "select stage from actor order by rand() limit 50;"
+    movieDF = pd.read_sql_query(text(movieQuery), engine)
     connection.close()
     engine.dispose()
     return movieDF.to_json()
@@ -86,10 +72,19 @@ def checkLogin():
     engine.dispose()
     return movieDF.to_json()
 
+@app.route("/movie_lookup_dropdown",methods=['GET', 'POST'])
+def movie_lookup_dropdown():
+    movie = request.json.get('movie')
+    movieQuery = "select title from movies oder by popularity DESC limit 50"
+    movieDF = pd.read_sql_query(text(movieQuery), engine)
+    connection.close()
+    engine.dispose()
+    return movieDF.to_json()
+
 @app.route("/movie_lookup",methods=['GET', 'POST'])
 def movie_lookup():
     movie = request.json.get('movie')
-    movieQuery = "select title, genre, release_date, original_language from movies where title = :movie"
+    movieQuery = "select title, genres, runtime, release_date from movies where title = '{movie}'"
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'movie':movie})
     connection.close()
     engine.dispose()

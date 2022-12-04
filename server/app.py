@@ -55,25 +55,25 @@ def insertUser():
     return "Inserted"
 
 @app.route("/ratings",methods=['GET', 'POST'])
-def ratings():
+def rating():
     userId = request.json.get('username')
     movieId = request.json.get('movieId')
     rating = request.json.get('rating')
     timestamp = request.json.get('timestamp')
     movieQuery = f"insert into ratings Values('{username}','{movieId}', '{rating}', '{timestamp}')"
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'username':username, 'movieId':movieId, 'rating':rating, 'timestamp':timestamp})
+    engine.execute(text(movieQuery))
     connection.close()
     engine.dispose()
     return "Rating inserted"
 
 @app.route("/actorInMovie",methods=['GET', 'POST'])
-def actorInMovie():
+deg rating():
     actor = request.json.get('actor')
     movieQuery = "select m.title, m.popularity from movies m join credits c on m.id = c.id where c.crew LIKE '%:actor%' order by m.popularity DESC"
     movieDF = pd.read_sql_query(text(movieQuery), engine, param={'actor':actor})
     connection.close()
     engine.dispose()
-    return movieDF.to_json()
 
 @app.route("/checkLogin",methods=['GET', 'POST'])
 def checkLogin():

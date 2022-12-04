@@ -3,7 +3,7 @@ import {AppBar, Box, Container, Button, Toolbar, Typography} from '@mui/material
 import MovieFilterIcon from '@mui/icons-material/MovieFilter';
 
 const signIn = [{title: 'Sign-Up', keys:'SignUp'}, {title: 'Sign-In', keys:'SignIn'}];
-const pages = [{title: 'Actor Lookup', keys:'Actor'}, {title: 'Movie Lookup', keys:'href'}];
+const pages = [{title: 'Actor Lookup', keys:'Actor'}, {title: 'Movie Lookup', keys:'Movie'}];
 
 
 const Nav = () => {

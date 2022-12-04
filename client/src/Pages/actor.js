@@ -15,6 +15,9 @@ const styles = {
   }
 };
 
+
+
+
 function ActorLookup() {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -32,6 +35,7 @@ function ActorLookup() {
       setIsSubmitted(true); 
   }
 };
+
 const renderErrorMessage = (name) =>
     name === errorMessages.name && (
       <div className="error">{errorMessages.message}</div>
@@ -50,13 +54,29 @@ const renderErrorMessage = (name) =>
       </form>
     </div>
   );
+  
+
+
+
   return (
+
       <div className="actor">
       <div className="actor-form">
         <Paper style={styles.paperContainer}>
-        <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='center' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #6e6666", opacity:"0.90"}}>
-        <div className="title">Actor Lookup</div>
+        <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='left' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #6e6666", opacity:"0.90"}}>
+        <h1>Search a movie with actor name!</h1>
+        <form>  
+        <b> Choose the actor: </b>  
+        <select id = "Actorname" onchange = "ListActors()" > 
+        <option> ---Choose Actor--- </option>  
+        <option> a </option>  
+        <option> b </option>  
+        <option> c </option>  
+        <option> d </option>  
+        </select> 
+         
         {isSubmitted ? <div>Actor Looked Up!</div> : renderForm}
+        </form> 
         </Grid>
       </Paper>
       </div>

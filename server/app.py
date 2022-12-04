@@ -74,6 +74,7 @@ deg rating():
     movieDF = pd.read_sql_query(text(movieQuery), engine, param={'actor':actor})
     connection.close()
     engine.dispose()
+    return movieDF.to_json()
 
 @app.route("/checkLogin",methods=['GET', 'POST'])
 def checkLogin():

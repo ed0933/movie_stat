@@ -26,13 +26,11 @@ function SignIn() {
     let path = `/`; 
     navigate(path);
   }
-  useEffect(() => {
-
-  }, [userResult]);
   
   useEffect(() => {
-
-  }, [passResult]);
+    var { uname, pass } = document.forms[0];
+    validationCheck(uname,pass);
+  }, [userResult, passResult]);
 
   const handleSubmit = (event) => {
     //Prevent page reload
@@ -44,22 +42,28 @@ function SignIn() {
     apiService.CheckLogin(uname.value, pass.value).then((response) => setPassResult(response['password'][0]))
     .catch(error => console.log('error', error));
 
-
-    console.log(userResult);
-    console.log(passResult);
     // Compare user info
+    
+  };
+
+  function validationCheck(uname, pass) {
     if (uname.value == userResult) {
       if (pass.value !== passResult) {
         // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
+        if (pass.value !== '') {
+          setErrorMessages({ name: "pass", message: errors.pass });
+        }
       } else {
         setIsSubmitted(true);
-        routeChange()   }
+        routeChange()   
+      }
     } else {
       // Username not found
-      setErrorMessages({ name: "pass", message: errors.pass });
+      if (uname.value !== '') {
+        setErrorMessages({ name: "pass", message: errors.pass });
+      }
     }
-  };
+  }
 
   // Generate JSX code for error message
   const renderErrorMessage = (name) =>

@@ -47,4 +47,18 @@ export default class apiService {
         .then(response => response.json())
         .catch(error => console.log(error));
     }
+
+    static CheckLogin(username, password) {
+        return fetch('http://localhost:5000/checkLogin', {
+            method:'POST',
+            mode: 'cors',
+            headers : {'Content-Type':'application/json'},
+            body:  JSON.stringify({
+                "username": username,
+                "password": password
+            })
+        })
+        .then(response => response.json())
+        .catch(error => console.log(error));
+    }
 }

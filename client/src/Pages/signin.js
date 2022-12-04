@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import Nav from '../Components/Nav.js';
 import {Grid} from '@mui/material';
 import ReactDOM from "react-dom";
+import { useNavigate } from "react-router-dom";
+import apiService from '../Components/apiService.js'
 
 import "./signIn.css";
 
@@ -9,6 +11,9 @@ function SignIn() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [userResult, setUserResult] = useState({});
+  const [passResult, setPassResult] = useState({});
+
 
   // User Login info, this needs to be editable and have 
   const database = [
@@ -27,23 +32,31 @@ function SignIn() {
     pass: "INVALID PASSWORD"
   };
 
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+    let path = `/`; 
+    navigate(path);
+  }
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
 
     var { uname, pass } = document.forms[0];
-
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
+    apiService.CheckLogin(uname.value, pass.value).then((response) => setUserResult(response['username'][0]))
+    .catch(error => console.log('error', error));
+    apiService.CheckLogin(uname.value, pass.value).then((response) => setPassResult(response['password'][0]))
+    .catch(error => console.log('error', error));
+    console.log(userResult);
+    console.log(passResult);
 
     // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
+    if (uname.value == userResult) {
+      if (pass.value !== passResult) {
         // Invalid password
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
         setIsSubmitted(true);
-      }
+        routeChange()   }
     } else {
       // Username not found
       setErrorMessages({ name: "uname", message: errors.uname });

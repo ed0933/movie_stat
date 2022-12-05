@@ -1,7 +1,7 @@
 import 'devextreme/dist/css/dx.common.css';
 import { useState } from 'react'
 import 'devextreme/dist/css/dx.light.css'; //npx -p devextreme-cli devextreme add devextreme-react
-import './actor.css';
+import './movie.css';
 
 import {Paper, Grid} from '@mui/material'; //npm install @mui/material @emotion/react @emotion/styled
 import Image from '../Assets/img2.jpg';
@@ -58,7 +58,7 @@ const renderErrorMessage = (name) =>
       <Paper style={styles.paperContainer}>
       <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='left' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #6e6666", opacity:"0.90"}}>
       <h1>Search a movie!</h1>
-      {isSubmitted ? <div>Movie Looked Up!</div> : renderForm}
+      {isSubmitted ? <div>Movie Looked Up!!</div> : renderForm}
       </Grid>
     </Paper>
     </div>

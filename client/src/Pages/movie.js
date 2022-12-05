@@ -41,7 +41,7 @@ const renderErrorMessage = (name) =>
     <div className="form">
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label>Enter actor name</label>
+          <label>Enter movie name</label>
           <input type="text" name="uname" required />
           {renderErrorMessage("uname")}
         </div>
@@ -66,6 +66,5 @@ const renderErrorMessage = (name) =>
 );
 
 }
-
 
 export default MovieLookup;

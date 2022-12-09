@@ -33,7 +33,7 @@ export default class apiService {
         .catch(error => console.log(error));
     }
 
-    static GetMovieInfo(stage) {
+    static GetMovieInfo(movie) {
         return fetch('http://localhost:5000/getMovieInfo', {
             method:'POST',
             mode: 'cors',

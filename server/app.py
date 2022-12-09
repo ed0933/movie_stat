@@ -42,6 +42,7 @@ def getActorInfo():
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'stage':stage})
     connection.close()
     engine.dispose()
+    print(movieDF.to_json())
     return movieDF.to_json()
 
 @app.route("/insertUser",methods=['GET', 'POST'])

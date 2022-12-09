@@ -38,7 +38,7 @@ def populateMovies():
 @app.route("/getActorInfo",methods=['GET', 'POST'])
 def getActorInfo():
     stage = request.json.get('stage')
-    movieQuery = "select * from actor where stage = :stage"
+    movieQuery = "select stage, dow, birth, gov, giv, gen, dob from actor where stage = :stage"
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'stage':stage})
     connection.close()
     engine.dispose()

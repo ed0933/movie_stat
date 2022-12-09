@@ -20,7 +20,6 @@ export default class apiService {
         .catch(error => console.log(error));
     }
 
-
     static GetActorInfo(stage) {
         return fetch('http://localhost:5000/getActorInfo', {
             method:'POST',
@@ -28,6 +27,19 @@ export default class apiService {
             headers : {'Content-Type':'application/json'},
             body:  JSON.stringify({
                 "stage": stage
+            })
+        })
+        .then(response => response.json())
+        .catch(error => console.log(error));
+    }
+
+    static GetMovieInfo(stage) {
+        return fetch('http://localhost:5000/getMovieInfo', {
+            method:'POST',
+            mode: 'cors',
+            headers : {'Content-Type':'application/json'},
+            body:  JSON.stringify({
+                "movie": movie
             })
         })
         .then(response => response.json())

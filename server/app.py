@@ -64,8 +64,7 @@ def checkLogin():
     engine.dispose()
     return movieDF.to_json()
 
-
-@app.route("/movie_lookup",methods=['GET', 'POST'])
+@app.route("/getMovieInfo",methods=['GET', 'POST'])
 def movie_lookup():
     movie = request.json.get('movie')
     movieQuery = "select title, genres, runtime, release_date from movies where title = '{movie}'"

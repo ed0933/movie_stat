@@ -72,13 +72,12 @@ function SignUp() {
 
   return (
     <div className="app">
-      <Nav />
       <div className="login-form">
         <div className="title">Sign Up</div>
         {isSubmitted ? 
         <div>User has successfully signed up!
         <p>Sign in:</p>
-            <Link to="/signin">SignIn</Link>
+            <Link to="/">SignIn</Link>
         </div> : renderForm}
       </div>
     </div>

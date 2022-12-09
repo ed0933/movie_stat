@@ -25,7 +25,7 @@ function SignIn() {
 
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
-    let path = `/`; 
+    let path = `/Home`; 
     navigate(path);
   }
   

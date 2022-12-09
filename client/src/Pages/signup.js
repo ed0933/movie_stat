@@ -72,7 +72,6 @@ function SignUp() {
 
   return (
     <div className="app">
-      <Nav />
       <div className="login-form">
         <div className="title">Sign Up</div>
         {isSubmitted ? 

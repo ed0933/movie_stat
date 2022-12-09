@@ -25,7 +25,7 @@ function ActorLookup() {
   const [formResult, setFormResult] = useState('');
 
   useEffect(() => {
-    setFormResult("Stage Name [" + JSON.stringify(formJSON["stage"][0]) + "]: " + "Work Years [" + JSON.stringify(formJSON["dow"][0]) + "]: " + "Birth Name [" + JSON.stringify(formJSON["birth"][0]) + ", " + JSON.stringify(formJSON["gov"][0]) + "]: ");
+    setFormResult("Stage Name: [" + JSON.stringify(formJSON["stage"][0]) + "], " + "Work Time: [" + JSON.stringify(formJSON["dow"][0]) + "], " + "Birth Name: [" + JSON.stringify(formJSON["birth"][0]) + ", " + JSON.stringify(formJSON["gov"][0]) + "], " + "Gender: [" + JSON.stringify(formJSON["giv"][0]) + "], " + "Lived: [" + JSON.stringify(formJSON["gen"][0]) + "-" + JSON.stringify(formJSON["dob"][0]) +  "]");
   }, [formJSON]);
 
   const errors = {
@@ -38,9 +38,7 @@ function ActorLookup() {
     var { stage } = document.forms[0];
     if (stage.value === "") {
       setErrorMessages({ name: "stage", message: errors.stage });
-  } else {
-      setIsSubmitted(true); 
-  }
+  } 
   apiService.GetActorInfo(stage.value).then((response) => setFormJSON(response))
     .catch(error => console.log('error', error));
 };
@@ -57,9 +55,7 @@ const renderErrorMessage = (name) =>
           <input type="text" name="stage" required />
           {renderErrorMessage("stage")}
         </div>
-        <div className="button-container">
-          <input type="submit" />
-        </div>
+
       </form>
     </div>
   );

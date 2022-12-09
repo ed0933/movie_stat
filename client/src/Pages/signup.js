@@ -78,7 +78,7 @@ function SignUp() {
         {isSubmitted ? 
         <div>User has successfully signed up!
         <p>Sign in:</p>
-            <Link to="/signin">SignIn</Link>
+            <Link to="/">SignIn</Link>
         </div> : renderForm}
       </div>
     </div>

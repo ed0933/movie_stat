@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import 'devextreme/dist/css/dx.light.css'; //npx -p devextreme-cli devextreme add devextreme-react
 import './actor.css';
 import apiService from '../Components/apiService.js'
+import Nav from '../Components/Nav.js';
 
 
 import {Paper, Grid, Box} from '@mui/material'; //npm install @mui/material @emotion/react @emotion/styled
@@ -62,8 +63,12 @@ const renderErrorMessage = (name) =>
   
   return (
     <div className="actor">
+    <Nav />
     <div className="actor-form">
       <Paper style={styles.paperContainer}>
+      &nbps;
+      &nbps;
+
       <Grid container spacing={0} position= 'fixed' direction='column' alignItems='center' justifyContent='top' style={{ minHeight: '100%', backdropFilter: 'blur(10px)',  fontFamily: 'Trebuchet MS', fontSize: '4vh', color: 'white', textShadow: "2px 2px #6e6666", opacity:"0.90"}}>
       <h1>Search an actor</h1>
       {isSubmitted ? <div>Actor Looked Up!!</div> : renderForm}

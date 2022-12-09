@@ -19,7 +19,7 @@ const Nav = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/Home"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

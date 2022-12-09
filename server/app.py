@@ -54,14 +54,6 @@ def insertUser():
     engine.dispose()
     return "Inserted"
 
-@app.route("/actor_lookup_dropdown",methods=['GET', 'POST'])
-def actor_lookup_dropdown():
-    movieQuery = "select stage from actor order by rand() limit 50;"
-    movieDF = pd.read_sql_query(text(movieQuery), engine)
-    connection.close()
-    engine.dispose()
-    return movieDF.to_json()
-
 @app.route("/checkLogin",methods=['GET', 'POST'])
 def checkLogin():
     username = request.json.get('username')
@@ -72,14 +64,6 @@ def checkLogin():
     engine.dispose()
     return movieDF.to_json()
 
-@app.route("/movie_lookup_dropdown",methods=['GET', 'POST'])
-def movie_lookup_dropdown():
-    movie = request.json.get('movie')
-    movieQuery = "select title from movies oder by popularity DESC limit 50"
-    movieDF = pd.read_sql_query(text(movieQuery), engine)
-    connection.close()
-    engine.dispose()
-    return movieDF.to_json()
 
 @app.route("/movie_lookup",methods=['GET', 'POST'])
 def movie_lookup():

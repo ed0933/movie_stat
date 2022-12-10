@@ -21,7 +21,7 @@ connection = engine.connect()
 dbapi_conn = engine.raw_connection()
 
 engine.execute("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED")
-print()
+
 
 """@app.route("/populateActors",methods=['GET', 'POST'])
 def populateActors():
@@ -73,7 +73,6 @@ def checkLogin():
 @app.route("/getMovieInfo",methods=['GET', 'POST'])
 def movie_lookup():
     movie = request.json.get('movie')
-    print(movie)
     movieQuery = f"select title, genres, runtime, release_date from movies where title = '{movie}'"
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'movie':movie})
     connection.close()

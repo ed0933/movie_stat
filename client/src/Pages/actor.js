@@ -26,6 +26,10 @@ function ActorLookup() {
   const [formResult, setFormResult] = useState('');
 
   useEffect(() => {
+    if (typeof formJSON["stage"][0] === 'undefined') {
+      setFormJSON({"stage" : {"0": "None"}, "dow" : {"0": "None"}, "stage" : {"0": "None"}, "birth" : {"0": "None"}, "gov" : {"0": "None"}, "giv" : {"0": "None"}, "gen" : {"0": "None"}, "dob" : {"0": "None"}});
+    }
+
     setFormResult("Stage Name: [" + JSON.stringify(formJSON["stage"][0]) + "], " + "Work Time: [" + JSON.stringify(formJSON["dow"][0]) + "], " + "Birth Name: [" + JSON.stringify(formJSON["birth"][0]) + ", " + JSON.stringify(formJSON["gov"][0]) + "], " + "Gender: [" + JSON.stringify(formJSON["giv"][0]) + "], " + "Lived: [" + JSON.stringify(formJSON["gen"][0]) + "-" + JSON.stringify(formJSON["dob"][0]) +  "]");
   }, [formJSON]);
 

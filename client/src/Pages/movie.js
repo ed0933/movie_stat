@@ -22,11 +22,18 @@ const styles = {
 function MovieLookup() {
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [formJSON, setFormJSON] = useState({"title" : {"0": "None"}, "genres" : {"0": "None"}, "runtime" : {"0": "None"}, "release_date" : {"0": "None"}})
+  const [formJSON, setFormJSON] = useState({"title" : {"0": "None"}, "genres" : {"0": "None"}, "runtime" : {"0": 0}, "release_date" : {"0": "None"}})
   const [formResult, setFormResult] = useState('');
 
   useEffect(() => {
-    setFormResult("Title: [" + JSON.stringify(formJSON["title"][0]) + "], " + "Genre: [" + JSON.stringify(formJSON["genres"][0]) + "], Runtime: [" + JSON.stringify(formJSON["runtime"][0]) + " minutes], " + "Release Date: [" + JSON.stringify(formJSON["release_date"][0]) + "]");
+    if (typeof formJSON["genres"][0] !== 'undefined') {
+      var genre = JSON.stringify(formJSON["genres"][0]);
+      genre = genre.split('}')[0];
+      genre = genre.substring(genre.indexOf('\'name\':') + 8).slice(1, -1);
+    } else {
+      setFormJSON({"title" : {"0": "None"}, "genres" : {"0": "None"}, "runtime" : {"0": 0}, "release_date" : {"0": "None"}});
+    }
+    setFormResult("Title: [" + JSON.stringify(formJSON["title"][0]) + "], " + "Genre: [\"" + genre + "\"], Runtime: [" + JSON.stringify(formJSON["runtime"][0]) + " minutes], " + "Release Date: [" + JSON.stringify(formJSON["release_date"][0]) + "]");
   }, [formJSON]);
 
   const errors = {

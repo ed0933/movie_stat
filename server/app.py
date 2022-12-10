@@ -18,6 +18,7 @@ url = f"mysql+pymysql://root:{PASSWORD}@{PUBLIC_IP_ADDRESS}/{DBNAME}?"
 app.config["SQLALCHEMY_DATABASE_URI"] = url
 engine = create_engine(url)
 connection = engine.connect()
+dbapi_conn = engine.raw_connection()
 
 @app.route("/populateActors",methods=['GET', 'POST'])
 def populateActors():
@@ -48,8 +49,10 @@ def getActorInfo():
 def insertUser():
     username = request.json.get('username')
     password = request.json.get('password')
-    movieQuery = f"insert into users Values('{username}', '{password}')"
-    engine.execute(text(movieQuery))
+    cursor = dbapi_conn.cursor()
+    cursor.callproc("insert_users", [username, password])
+    cursor.close()
+    dbapi_conn.commit()
     connection.close()
     engine.dispose()
     return "Inserted"

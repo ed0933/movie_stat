@@ -45,6 +45,7 @@ def getActorInfo():
     engine.dispose()
     return movieDF.to_json()
 
+#it does not insert duplicate username
 @app.route("/insertUser",methods=['GET', 'POST'])
 def insertUser():
     username = request.json.get('username')

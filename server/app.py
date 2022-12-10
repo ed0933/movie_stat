@@ -20,7 +20,10 @@ engine = create_engine(url)
 connection = engine.connect()
 dbapi_conn = engine.raw_connection()
 
-@app.route("/populateActors",methods=['GET', 'POST'])
+engine.execute("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED")
+print()
+
+"""@app.route("/populateActors",methods=['GET', 'POST'])
 def populateActors():
     movieQuery = "select stage from actor"
     movieDF = pd.read_sql_query(text(movieQuery), engine)
@@ -34,7 +37,7 @@ def populateMovies():
     movieDF = pd.read_sql_query(text(movieQuery), engine)
     connection.close()
     engine.dispose()
-    return movieDF.to_json()
+    return movieDF.to_json()"""
 
 @app.route("/getActorInfo",methods=['GET', 'POST'])
 def getActorInfo():
@@ -75,6 +78,4 @@ def movie_lookup():
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'movie':movie})
     connection.close()
     engine.dispose()
-    print(movieDF.to_json())
-
     return movieDF.to_json()

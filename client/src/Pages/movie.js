@@ -26,7 +26,7 @@ function MovieLookup() {
   const [formResult, setFormResult] = useState('');
 
   useEffect(() => {
-    setFormResult("Title: [" + JSON.stringify(formJSON["title"][0]) + "], " + "Genre: [" + JSON.stringify(formJSON["genres"][0]) + "], Runtime: [" + JSON.stringify(formJSON["runtime"][0]) + "], " + "Release Date: [" + JSON.stringify(formJSON["release_date"][0]) + "]");
+    setFormResult("Title: [" + JSON.stringify(formJSON["title"][0]) + "], " + "Genre: [" + JSON.stringify(formJSON["genres"][0]) + "], Runtime: [" + JSON.stringify(formJSON["runtime"][0]) + " minutes], " + "Release Date: [" + JSON.stringify(formJSON["release_date"][0]) + "]");
   }, [formJSON]);
 
   const errors = {

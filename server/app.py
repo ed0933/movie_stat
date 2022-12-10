@@ -42,7 +42,6 @@ def getActorInfo():
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'stage':stage})
     connection.close()
     engine.dispose()
-    print(movieDF.to_json())
     return movieDF.to_json()
 
 @app.route("/insertUser",methods=['GET', 'POST'])
@@ -68,8 +67,11 @@ def checkLogin():
 @app.route("/getMovieInfo",methods=['GET', 'POST'])
 def movie_lookup():
     movie = request.json.get('movie')
-    movieQuery = "select title, genres, runtime, release_date from movies where title = '{movie}'"
+    print(movie)
+    movieQuery = f"select title, genres, runtime, release_date from movies where title = '{movie}'"
     movieDF = pd.read_sql_query(text(movieQuery), engine, params={'movie':movie})
     connection.close()
     engine.dispose()
+    print(movieDF.to_json())
+
     return movieDF.to_json()

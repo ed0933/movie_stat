@@ -22,7 +22,6 @@ dbapi_conn = engine.raw_connection()
 
 engine.execute("SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED")
 
-
 """@app.route("/populateActors",methods=['GET', 'POST'])
 def populateActors():
     movieQuery = "select stage from actor"

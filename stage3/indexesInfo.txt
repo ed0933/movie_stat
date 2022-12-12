@@ -1,0 +1,31 @@
+
+Information about the Indexes Used
+
+General Notes 
+All of our indexes are clustered B-TREEs rather than HASHs because the software tools we used did not support HASH, though we would have preferred it. The reason why we would prefer HASH is because it is better for individual selects, which is mostly what we are dealing with (rather than a range). 
+We have three indexes; one for each table (Actor Table, Movie Table, User Table).
+
+Name: Idx
+Index idx is of type B-TREE, and it is used for the Actor table. 
+The key for this table is the actor’s stage name, which we just called “stage.” 
+The index is very useful. 
+This index supports the GetActorInfo query, and the Actors report. 
+Queries That Benefit From This Index & Where They Are Used: 
+GetActorInfo: this is used when the user inputs an actor name that they want to look up, and the report for this displays the actors name along with other information (years worked, actual first name and last name, stage name, gender, and when they were born/died in years). 
+
+Name: Idx2
+Index idx2 is of type B-TREE, and it is used for the Movie table. 
+They key for this table is the title of the movie. We would normally not pick this, as movies can have the same title, but the table we used did not have any duplicate titles, so this was the best index for us to pick. In the case that there were duplicates, we would simply display all of the movies that matched the name the user input. 
+The index is very useful. 
+This index supports the MovieLookup query, and the Movies report. 
+Queries That Benefit From This Index & Where They Are Used:  
+MovieLookup: this is used when the user inputs a movie name they want to look up, and the report displays the movie title and other information with it (such as date released, genre, title, runtime). 
+
+Name: Idx3 
+Index idx3 is of type B-TREE, and it is used for the Users table (that stores usernames and passwords). 
+The key for this table is the username, as we do not allow the same username to be used. 
+The index is very useful 
+This index supports the CheckLogin query 
+Queries That Benefit From This Index & Where They Are Used: 
+CheckLogin: this is used when the user is trying to use our sign-in page, and it makes sure that they have an account (username and password match). It is also  used when the user is trying to use our sign-up page. Specifically, it does not allow duplicate usernames to exist, and also makes sure that they enter all of the information needed (just username and password). 
+
